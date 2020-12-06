@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="myFunction()"> Start </button>
+    <p id="demo0"></p>
+    <p id="demo1"></p>
+    <p id="demo2"></p>
+
+
+    <script>
+        function myFunction() {
+            let dist = 0;
+            let max_dist = 0;
+            let max_petrol = 30;
+            let count = 1;
+            let arr = [];
+            let text = ""
+            // generating 5 random number for petrol pump
+            while (arr.length < 5) {
+                var r = Math.floor(Math.random() * 100) + 1;
+                if (arr.indexOf(r) === -1) arr.push(r);
+
+            }
+            document.getElementById("demo0").innerHTML = "Game started";
+            document.getElementById("demo1").innerHTML = `Petrol pumps generated at ${arr.join(" , ")}`;
+
+
+
+            while (max_dist < 100) {
+
+                dist = Math.floor(Math.random() * 6) + 1;  //Generating random number to move the car
+
+                max_dist = max_dist + dist;  //new distance covered by the car
+                max_petrol = max_petrol - dist; //petrol remaining
+                if (max_petrol < 0) {
+                    break;
+                }
+                else if (arr.includes(max_dist)) {
+                    max_petrol += 20;                        // if car reaches the distance in the generated array of 5 
+
+                }
+
+
+                text += "Move" + count + "- Car at " + max_dist + ", petrol remaining " + max_petrol + "<br>";
+                document.getElementById("demo2").innerHTML = text;
+                count += 1;
+
+
+            }
+
+        }
+
+
+
+    </script>
+</body>
+
+</html>
